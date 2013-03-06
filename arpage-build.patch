@@ -1,0 +1,36 @@
+diff -aurN arpage-0.3.3.orig/src/arpstorage.cc arpage-0.3.3/src/arpstorage.cc
+--- arpage-0.3.3.orig/src/arpstorage.cc	2013-02-17 14:10:31.347750134 +0100
++++ arpage-0.3.3/src/arpstorage.cc	2013-02-17 14:15:58.180753463 +0100
+@@ -234,7 +234,7 @@
+        ui->arpnoteorder->get_active_row_number() );
+       write_setting("notevalue", session_file,
+        ui->arpnoteduration->get_active_row_number() );
+-      session_file << "<arpeggiator/>" << std::endl;
++      session_file << "</arpeggiator>" << std::endl;
+       session_file.flush();
+       session_file.close();
+       retval = true;
+diff -aurN arpage-0.3.3.orig/src/jack_process.cc arpage-0.3.3/src/jack_process.cc
+--- arpage-0.3.3.orig/src/jack_process.cc	2013-02-17 14:10:31.347750134 +0100
++++ arpage-0.3.3/src/jack_process.cc	2013-02-17 14:15:49.131429492 +0100
+@@ -24,6 +24,7 @@
+ 
+ #include <iostream>
+ #include <cstdio>
++#include <unistd.h>
+ 
+ #define NOTE_ON  1
+ #define NOTE_OFF 0
+diff -aurN arpage-0.3.3.orig/src/scales.h arpage-0.3.3/src/scales.h
+--- arpage-0.3.3.orig/src/scales.h	2013-02-17 14:10:31.347750134 +0100
++++ arpage-0.3.3/src/scales.h	2013-02-17 14:16:42.028249256 +0100
+@@ -19,7 +19,8 @@
+ #ifndef __SCALES_H__
+ #define __SCALES_H__
+ 
+-#include <vector>
++#include <vector>
++#include <cstddef>
+ 
+ //============================================================================
+ //
